@@ -1,0 +1,805 @@
+<div style="max-width:1100px;margin:0 auto;text-align:center;">
+  <!-- TITLE -->
+  <h3 style="font-size:28px;font-weight:600;margin-bottom:20px;">
+   Table Interchangeables Preview
+  </h3>
+  <!-- PREVIEW AREA -->
+<div id="previewArea"     style="position:relative;width:100%;max-width:320px;aspect-ratio:1/1;margin:0 auto 30px auto;">
+    <img id="backerPreview"
+         src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Grey.jpeg/:/rs=w:740,cg:true,m"
+         style="width:100%;height:auto;">
+<img id="attachmentPreview"
+     src=""
+     style="position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%) scale(1);
+            pointer-events:none;">
+  </div>
+<!-- CURRENT PREVIEW TITLES -->
+<div id="previewTitle" style="text-align:center; margin-top:-15px; line-height:1.3; font-size:15px;">
+  <div>
+    Backer – <span id="backerName" style="font-weight:700;">Shiplap - Grey</span>
+  </div>
+  <div>
+    Attachment – <span id="attachmentName" style="font-weight:700;">None</span>
+  </div>
+</div>
+<style>
+.backers-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.backers-container .backer-item {
+  flex: 0 0 auto; /* desktop */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Responsive images */
+.backers-container .backer-item img {
+  width: 100%;
+  max-width: 70px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+/* Mobile: 3 per row (adjusted for gap space) */
+@media (max-width: 768px) {
+  .backers-container .backer-item {
+    flex: 0 0 calc(33.333% - 8px);
+    max-width: calc(33.333% - 8px);
+  }
+}
+/* Force GoDaddy HTML container to auto-size */
+html, body {
+  overflow-x: hidden;
+}
+
+section, 
+div[class*="html"], 
+div[class*="custom"], 
+div[data-section] {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* ADD THIS NEW PART */
+section,
+div,
+[class*="section"],
+[class*="html"],
+[class*="custom"] {
+  transition: none !important;
+  animation: none !important;
+}
+/* Accordion animation control */
+#everyday,
+#spring,
+#summer,
+#fall,
+#winter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease;
+}
+#everyday {
+  max-height: 1000px;
+}
+</style>
+
+<!-- BACKERS -->
+<h4 style="font-size:22px;font-weight:500;margin-bottom:15px;">
+  Choose a Backer
+</h4>
+
+<div class="backers-container">
+  <div class="backer-item">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Grey.jpeg/:/rs=w:740,cg:true,m"
+         onclick="setBacker(this.src, 'Shiplap - Grey')">
+    <div style="margin-top:6px; font-size:14px; font-weight:600;">Shiplap -<br>Grey</div>
+  </div>
+
+  <div class="backer-item">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Brown.jpeg/:/rs=w:740,cg:true,m"
+         onclick="setBacker(this.src, 'Shiplap - Brown')">
+    <div style="margin-top:6px; font-size:14px; font-weight:600;">Shiplap -<br>Brown</div>
+  </div>
+
+  <div class="backer-item">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Black.jpeg/:/rs=w:740,cg:true,m"
+         onclick="setBacker(this.src, 'Shiplap - Black')">
+    <div style="margin-top:6px; font-size:14px; font-weight:600;">Shiplap -<br>Black</div>
+  </div>
+
+  <div class="backer-item">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Patterned%20Brown.jpeg/:/rs=w:740,cg:true,m"
+         onclick="setBacker(this.src, 'Patterned - Brown')">
+    <div style="margin-top:6px; font-size:14px; font-weight:600;">Patterned -<br>Brown</div>
+  </div>
+
+  <div class="backer-item">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Patterned%20Drop%20Cloth.jpeg/:/rs=w:740,cg:true,m"
+         onclick="setBacker(this.src, 'Patterned - Beige')">
+    <div style="margin-top:6px; font-size:14px; font-weight:600;">Patterned -<br>Beige</div>
+  </div>
+
+</div>
+<!-- ATTACHMENTS -->
+<div style="width:100%; text-align:center; display:block;">
+
+<h4 style="font-size:22px;font-weight:500;margin-bottom:10px;">
+Choose an Attachment
+</h4>
+<!-- EVERYDAY (OPEN BY DEFAULT) -->
+<h5 onclick="toggleSection('everyday', this)"
+    data-title="Everyday"
+    style="cursor:pointer;font-size:18px;font-weight:500;margin-top:20px; display:block; width:100%;">
+    Everyday
+</h5>
+
+<div id="everyday" style="justify-content:center; gap:10px; flex-wrap:wrap;">
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Welcome%20Brown%20%26%20Black.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Welcome - Brown', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Welcome -<br>Brown
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Welcome%20Black%20%26%20Brown.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Welcome - Black', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Welcome -<br>Black
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hello%20Brown%20%26%20Black.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hello - Brown', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">Hello - Brown</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hello%20Black%20%26%20Brown.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hello - Black', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">Hello - Black</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Home%20Sweet%20Home%20Brown.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Home Sweet Home - Brown', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Home Sweet<br>Home -<br> Brown
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Home%20Sweet%20Home%20Grey.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Home Sweet Home - Grey', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Home Sweet<br>Home -<br>Grey
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Coffee%20Bar%20Grey.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Coffee Bar - Grey', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Coffee Bar -<br>Grey
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Coffee%20Bar%20Blue%20%26%20Grey.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Coffee Bar - Blue/Grey', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Coffee Bar -<br>Blue/Grey
+</div>
+  </div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+  <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Coffee%20Bar%20Brown%20%26%20Blue.png/:/rs=w:740,cg:true,m"
+       onclick="setAttachment(this.src, { name: 'Coffee Bar - Blue/Brown', scale: 0.35, top: '50%', left: '50%' })"
+       style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Coffee Bar -<br>Blue/Brown
+</div>
+  </div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+  <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Home%20Dog%20Is%20Grey.png/:/rs=w:740,cg:true,m"
+       onclick="setAttachment(this.src, { name: 'Home Dog - Grey', scale: 0.35, top: '50%', left: '50%' })"
+       style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Home Dog -<br>Grey
+</div>
+  </div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+  <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Not%20Today%20Succa.png/:/rs=w:740,cg:true,m"
+       onclick="setAttachment(this.src, { name: 'Not Today Succa', scale: 0.35, top: '50%', left: '50%' })"
+       style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Not Today<br>Succa
+</div>
+  </div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+  <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Chaos.png/:/rs=w:740,cg:true,m"
+       onclick="setAttachment(this.src, { name: 'Chaos', scale: 0.35, top: '50%', left: '50%' })"
+       style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">Chaos</div>
+  </div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+  <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Good%20Vibes%20Only%20Purple.png/:/rs=w:740,cg:true,m"
+       onclick="setAttachment(this.src, { name: 'Good Vibes - Purple', scale: 0.35, top: '50%', left: '50%' })"
+       style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Good Vibes -<br>Purple
+</div>
+  </div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+  <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Good%20Vibes%20Only%20Green.png/:/rs=w:740,cg:true,m"
+       onclick="setAttachment(this.src, { name: 'Good Vibes - Green', scale: 0.35, top: '50%', left: '50%' })"
+       style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Good Vibes -<br>Green
+</div>
+  </div>
+
+</div>
+
+<!-- SPRING -->
+<h5 onclick="toggleSection('spring', this)"
+    data-title="Spring"
+    style="cursor:pointer;font-size:18px;font-weight:500;margin-top:5px; display:block; width:100%;">
+    Spring
+</h5>
+
+<div id="spring" style="justify-content:center; gap:10px; flex-wrap:wrap;">
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/XO%20Pink.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'XO - Pink', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">XO - Pink</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/XO%20Red.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'XO - Red', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">XO - Red</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hello%20Love.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hello Love', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+  <div style="font-size:13px; font-weight:600;">Hello Love</div>
+</div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Amazing%20Grace%20Brown.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Amazing Grace - Brown', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Amazing Grace -<br>Brown
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Amazing%20Grace%20Grey.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Amazing Grace - Grey', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Amazing Grace -<br>Grey
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/He%20is%20Risen.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'He is Risen', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  He is<br>Risen
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Easter%20Peeps%20V1.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Easter Peeps - Blue', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Easter Peeps -<br>Blue
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hello%20Spring%20Floral%20Purple.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hello Spring - Purple', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Hello Spring -<br>Purple
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hello%20Spring%20Floral%20Green.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hello Spring - Green', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Hello Spring -<br>Green
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Bee%20Yellow.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Bee Happy - Yellow', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Bee Happy -<br>Yellow
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Bee%20Black.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Bee Happy - Black', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Bee Happy -<br>Black
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Baseball%20Blue.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Baseball - Blue', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Baseball -<br>Blue
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Baseball%20Red.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Baseball - Red', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Baseball -<br>Red
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Teacher%20Symbol.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Teacher Symbols', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Teacher<br>Symbols
+</div>
+  </div>
+
+</div>
+<!-- SUMMER -->
+<h5 onclick="toggleSection('summer', this)"
+    data-title="Summer"
+    style="cursor:pointer;font-size:18px;font-weight:500;margin-top:5px; display:block; width:100%;">
+    Summer
+</h5>
+
+<div id="summer" style="justify-content:center; gap:10px; flex-wrap:wrap;">
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Stars%20%26%20Stripes.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Stars & Stripes', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Stars &<br>Stripes
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/1776.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Party 1776', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">Party 1776</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Beach%20Please%20Purple.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Beach Please - Purple', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Beach Please -<br>Purple
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Beach%20Please%20Peach.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Beach Please - Peach', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Beach Please -<br>Peach
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Beach%20Please%20Coral.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Beach Please - Coral/Yellow', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Beach Please -<br>Coral/Yellow
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hello%20Summer%20Sunglasses.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hello Summer Sunglasses', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Hello Summer<br>Sunglasses
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hello%20Summer%20Hibiscus.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hello Summer Hibiscus', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Hello Summer<br>Hibiscus
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Aloha%20Hibiscus.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Aloha Hibiscus', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Aloha<br>Hibiscus
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Life%20is%20Sweet%20Watermelon.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Sweet Watermelon', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Sweet<br>Watermelon
+</div>
+  </div>
+
+</div>
+<!-- FALL -->
+<h5 onclick="toggleSection('fall', this)"
+    data-title="Fall"
+    style="cursor:pointer;font-size:18px;font-weight:500;margin-top:5px; display:block; width:100%;">
+    Fall
+</h5>
+<div id="fall" style="justify-content:center; gap:10px; flex-wrap:wrap;">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Game%20Day.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Game Day Football', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Game Day<br>Football
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Give%20Thanks.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Give Thanks', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">Give Thanks</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Happy%20Fall%20Leaves.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Happy Fall', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">Happy Fall</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Farm%20Fresh%20Pumpkins.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Farm Pumpkins', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Farm<br>Pumpkins
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Trick%20or%20Treat%20Orange.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Trick or Treat - Orange', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Trick or Treat -<br>Orange
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Trick%20or%20Treat%20Black.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Trick or Treat - Black', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Trick or Treat -<br>Black
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Boo%20Sheet%20Orange.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Boo Sheet - Orange', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Boo Sheet -<br>Orange
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hey%20Boo%20Orange.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hey Boo - Orange', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Hey Boo -<br>Orange
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Hey%20Boo%20Black.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Hey Boo - Black', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Hey Boo -<br>Black
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Jack-07da948.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Jack', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">Jack</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/I%20Smell%20Children.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Sisters - Children', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Sisters -<br>Children
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/I%20Dont%20Give%20Amuck.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Sisters - Amuck', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Sisters -<br>Amuck
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Halloween%20Witch%20Hat.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Witchy', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer; display:block;">
+    <div style="font-size:13px; font-weight:600;">Witchy</div>
+  </div>
+
+</div>
+
+<!-- WINTER -->
+<h5 onclick="toggleSection('winter', this)"
+    data-title="Winter"
+    style="cursor:pointer;font-size:18px;font-weight:500;margin-top:5px; display:block; width:100%;">
+    Winter
+</h5>
+<div id="winter" style="flex-direction:row; justify-content:center; align-items:flex-start; gap:10px; flex-wrap:wrap;">
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Nativity.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Nativity', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style="font-size:13px; font-weight:600;">Nativity</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Cardinal-51b8641.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Cardinal', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style="font-size:13px; font-weight:600;">Cardinal</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Winter%20is%20Stupid.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Winter is Stupid', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Winter is<br>Stupid
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/MC%20Mistletoe%20Red.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Christmas Mistletoe - Red', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Christmas<br>Mistletoe -<br> Red
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/MC%20Mistletoe%20Black.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Christmas Mistletoe - Black', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Christmas<br>Mistletoe -<br>Black
+</div>
+  </div>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Grinch%20Heart%20Green.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Feelings - Green', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Feelings -<br>Green
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Grinch%20Heart%20Black.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Feelings - Black', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Feelings -<br>Black
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Grinchmas%20White.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Grinchmas - White', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Grinchmas -<br>White
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Grinchmas%20Black.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Grinchmas - Black', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Grinchmas -<br>Black
+</div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+    <img src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Son%20of%20a%20Nutcracker.png/:/rs=w:740,cg:true,m"
+         onclick="setAttachment(this.src, { name: 'Son of a Nutcracker', scale: 0.35, top: '50%', left: '50%' })"
+         style="width:65px; cursor:pointer;">
+    <div style=" font-size:13px; font-weight:600; text-align:center; line-height:1.2; max-width:75px;">
+  Son of a<br>Nutcracker
+</div>
+  </div>
+
+ </div>
+
+<script>
+// ---------------------------
+// BACKER & ATTACHMENT LOGIC
+// ---------------------------
+function setBacker(src, name) {
+  document.getElementById('backerPreview').src = src;
+  document.getElementById('backerName').textContent = name;
+
+  // Auto-scroll on mobile
+  scrollToBacker();
+}
+function scrollToBacker() {
+  // Only scroll on mobile
+  if (window.innerWidth <= 768) { // match your mobile breakpoint
+    const preview = document.getElementById('previewArea');
+    if (preview) {
+      preview.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  }
+}
+
+function setAttachment(src, options = {}) {
+  const img = document.getElementById('attachmentPreview');
+  const backer = document.getElementById('backerPreview');
+
+  img.src = src;
+  img.style.position = "absolute";
+
+  // Default top/left percentages
+  const top  = options.top || "65%";
+  const left = options.left || "51%";
+
+  img.style.top = top;
+  img.style.left = left;
+  img.style.transform = "translate(-50%, -50%)";
+
+  // Set width proportional to backer width
+  const backerWidth = backer.clientWidth;
+  const scaleFactor = options.scale || 0.3;
+  img.style.width = (backerWidth * scaleFactor) + "px";
+  img.style.height = "auto";
+
+  document.getElementById('attachmentName').textContent = options.name || "None";
+
+  // Smooth scroll to preview
+  const preview = document.getElementById('previewArea');
+  if (preview) {
+    preview.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+}
+
+// ---------------------------
+// ACCORDION TOGGLE LOGIC
+// ---------------------------
+function toggleSection(id, header) {
+  const section = document.getElementById(id);
+  const isOpen = section.classList.contains("open");
+
+  if (isOpen) {
+    section.style.maxHeight = "0px";
+    section.classList.remove("open");
+  } else {
+    section.style.maxHeight = section.scrollHeight + "px";
+    section.classList.add("open");
+  }
+
+  // Update triangles for all headers
+  document.querySelectorAll("h5[data-title]").forEach(h => {
+    const secId = h.getAttribute("onclick").match(/'([^']+)'/)[1];
+    const sec = document.getElementById(secId);
+    h.innerHTML = (sec.classList.contains("open") ? "▼ " : "▶ ") + h.dataset.title;
+  });
+}
+
+// ---------------------------
+// INITIALIZATION ON PAGE LOAD
+// ---------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  // Open "everyday" by default
+  const defaultSection = document.getElementById("everyday");
+  defaultSection.classList.add("open");
+  defaultSection.style.maxHeight = defaultSection.scrollHeight + "px";
+
+  // Initialize triangles for all headers
+  document.querySelectorAll("h5[data-title]").forEach(header => {
+    const id = header.getAttribute("onclick").match(/'([^']+)'/)[1];
+    const section = document.getElementById(id);
+    header.innerHTML = (section.classList.contains("open") ? "▼ " : "▶ ") + header.dataset.title;
+  });
+});
+</script>
