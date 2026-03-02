@@ -707,12 +707,26 @@ Choose an Attachment
  </div>
 
 <script>
-// ---------------------------
-// BACKER & ATTACHMENT LOGIC
-// ---------------------------
+function sendHeightToParent() {
+  const height = document.body.getBoundingClientRect().height;
+  window.parent.postMessage({
+    type: "resize-iframe",
+    height: Math.ceil(height)
+  }, "*");
+}
+
+window.addEventListener("load", sendHeightToParent);
+
+const observer = new ResizeObserver(() => {
+  sendHeightToParent();
+});
+
+observer.observe(document.body);
 function setBacker(src, name) {
   document.getElementById('backerPreview').src = src;
   document.getElementById('backerName').textContent = name;
+
+adjustOpenAccordions();
 
   // Auto-scroll on mobile
   scrollToBacker();
@@ -733,6 +747,8 @@ function scrollToBacker() {
 function setAttachment(src, options = {}) {
   const img = document.getElementById('attachmentPreview');
   const backer = document.getElementById('backerPreview');
+
+ adjustOpenAccordions();  
 
   img.src = src;
   img.style.position = "absolute";
@@ -766,6 +782,11 @@ function setAttachment(src, options = {}) {
 // ---------------------------
 // ACCORDION TOGGLE LOGIC
 // ---------------------------
+function adjustOpenAccordions() {
+  document.querySelectorAll(".open").forEach(section => {
+    section.style.maxHeight = section.scrollHeight + "px";
+  });
+}
 function toggleSection(id, header) {
   const section = document.getElementById(id);
   const isOpen = section.classList.contains("open");
