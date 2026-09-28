@@ -1665,13 +1665,27 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("h5[data-title]").forEach(header => {
     const id = header.getAttribute("onclick").match(/'([^']+)'/)[1];
     const section = document.getElementById(id);
-   header.innerHTML = header.dataset.title;
+    header.innerHTML = header.dataset.title;
   });
- const defaultBacker = document.getElementById('backerPreview')?.src;
-const defaultAttachment = document.getElementById('attachmentPreview')?.src;
 
-updateAllMiniPreviews(defaultBacker, defaultAttachment);
+  const defaultBacker = document.getElementById('backerPreview')?.src;
+  const defaultAttachment = document.getElementById('attachmentPreview')?.src;
+
+  updateAllMiniPreviews(defaultBacker, defaultAttachment);
+
+  // Re-measure the open section whenever its contents change size
+  // (images finishing loading, mini previews appearing on mobile, etc.)
+  const sectionObserver = new ResizeObserver(() => adjustOpenAccordions());
+  Array.from(defaultSection.children).forEach(child => sectionObserver.observe(child));
+
+  // Safety net: re-measure a few times as images and previews settle
+  [150, 500, 1200, 2500].forEach(ms => setTimeout(adjustOpenAccordions, ms));
+
+  document.querySelectorAll("img").forEach(img => {
+    if (!img.complete) img.addEventListener("load", adjustOpenAccordions);
+  });
 });
+  
 </script>
 
 <script>
