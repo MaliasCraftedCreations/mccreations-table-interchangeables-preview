@@ -175,7 +175,7 @@ overflow: hidden;
 <!-- CURRENT PREVIEW TITLES -->
 <div id="previewTitle" style="text-align:center; margin-top:-15px; line-height:1.3; font-size:15px;">
   <div>
-    Backer – <span id="backerName" style="font-weight:700;">Shiplap - Grey</span>
+    Backer – <span id="backerName" style="font-weight:700;">Shiplap - Grey (with Grey Stand)</span>
   </div>
   <div>
     Attachment – <span id="attachmentName" style="font-weight:700;">None</span>
@@ -519,31 +519,31 @@ h5.open::before {
 
 <div class="backers-container">
   <div class="backer-item">
-    <img class="backer-thumb" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Grey.png/:/rs=w:740,cg:true,m"
-         onclick="setBacker(this.src, 'Shiplap - Grey (with Grey Stand)', this)">
+    <img class="backer-thumb" data-fullname="Shiplap - Grey (with Grey Stand)" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Grey.png/:/rs=w:740,cg:true,m"
+         onclick="setBacker(this.src, 'Shiplap - Grey', this)">
     <div style="margin-top:6px; font-size:14px; font-weight:600;">Shiplap -<br>Grey</div>
   </div>
 
   <div class="backer-item">
-    <img class="backer-thumb" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Brown.png/:/rs=w:740,cg:true,m"
+    <img class="backer-thumb" data-fullname="Shiplap - Brown (with Brown Stand)" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Brown.png/:/rs=w:740,cg:true,m"
          onclick="setBacker(this.src, 'Shiplap - Brown', this)">
     <div style="margin-top:6px; font-size:14px; font-weight:600;">Shiplap -<br>Brown</div>
   </div>
 
   <div class="backer-item">
-    <img class="backer-thumb" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Black.png/:/rs=w:740,cg:true,m"
+    <img class="backer-thumb" data-fullname="Shiplap - Black (with Black Stand)" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Shiplap%20Black.png/:/rs=w:740,cg:true,m"
          onclick="setBacker(this.src, 'Shiplap - Black', this)">
     <div style="margin-top:6px; font-size:14px; font-weight:600;">Shiplap -<br>Black</div>
   </div>
 
   <div class="backer-item">
-    <img class="backer-thumb" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Patterned%20Brown.png/:/rs=w:740,cg:true,m"
+    <img class="backer-thumb" data-fullname="Patterned - Brown (with Brown Stand)" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Patterned%20Brown.png/:/rs=w:740,cg:true,m"
          onclick="setBacker(this.src, 'Patterned - Brown', this)">
     <div style="margin-top:6px; font-size:14px; font-weight:600;">Patterned -<br>Brown</div>
   </div>
 
   <div class="backer-item">
-    <img class="backer-thumb" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Patterned%20Drop%20Cloth.png/:/rs=w:740,cg:true,m"
+    <img class="backer-thumb" data-fullname="Patterned - Beige (with Natural Wood Stand)" src="https://img1.wsimg.com/isteam/ip/e57bea54-8b62-483e-b4f4-30ae2f7988e3/Patterned%20Drop%20Cloth.png/:/rs=w:740,cg:true,m"
          onclick="setBacker(this.src, 'Patterned - Beige', this)">
     <div style="margin-top:6px; font-size:14px; font-weight:600;">Patterned -<br>Beige</div>
   </div>
@@ -1658,8 +1658,12 @@ function setBacker(src, name, el) {
   if (el) el.classList.add('selected-thumb');
 
   document.getElementById('backerPreview').src = src;
-  document.getElementById('backerName').textContent = name;
 
+  const fullName = el && el.dataset.fullname ? el.dataset.fullname : name;
+  document.getElementById('backerName').textContent = fullName;
+
+  currentBackerName = name; // short version, used in the cart
+  
 adjustOpenAccordions();
 
   // Auto-scroll on mobile
@@ -1795,6 +1799,7 @@ document.addEventListener("DOMContentLoaded", () => {
 let backers = [];
 let attachments = [];
 let currentAttachmentPrice = 0;
+let currentBackerName = "";
 
 const BACKER_BASE_PRICE = 30;
 const INCLUDED_ATTACHMENT_PRICE = 12;
@@ -1887,9 +1892,8 @@ function updateOrderDisplay() {
 
 <script>
 function addSelectedBacker() {
-  const name = document.getElementById("backerName").textContent;
-  if (name && name !== "None") {
-    backers.push({ name: name });
+  if (currentBackerName && currentBackerName !== "None") {
+    backers.push({ name: currentBackerName });
     updateOrderDisplay();
   }
 }
