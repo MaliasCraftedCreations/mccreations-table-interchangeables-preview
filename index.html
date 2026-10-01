@@ -1803,7 +1803,25 @@ let currentBackerName = "";
 
 const BACKER_BASE_PRICE = 30;
 const INCLUDED_ATTACHMENT_PRICE = 12;
-  
+const CART_STORAGE_KEY = "mc_table_interchangeables_cart";
+
+function saveInterchangeablesCart() {
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify({ backers, attachments }));
+  } catch (e) {}
+}
+
+function loadInterchangeablesCart() {
+  try {
+    const saved = localStorage.getItem(CART_STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      backers = parsed.backers || [];
+      attachments = parsed.attachments || [];
+    }
+  } catch (e) {}
+}
+
 function removeFromOrder(index) {
   if (index < backers.length) {
     backers.splice(index, 1);
@@ -1811,6 +1829,7 @@ function removeFromOrder(index) {
     attachments.splice(index - backers.length, 1);
   }
 
+  saveInterchangeablesCart();
   updateOrderDisplay();
 }
 
@@ -1892,8 +1911,10 @@ function updateOrderDisplay() {
 
 <script>
 function addSelectedBacker() {
-  if (currentBackerName && currentBackerName !== "None") {
-    backers.push({ name: currentBackerName });
+  const name = document.getElementById("backerName").textContent;
+  if (name && name !== "None") {
+    backers.push({ name: name });
+    saveInterchangeablesCart();
     updateOrderDisplay();
   }
 }
@@ -1902,6 +1923,7 @@ function addSelectedAttachment() {
   const name = document.getElementById("attachmentName").textContent;
   if (name && name !== "None") {
     attachments.push({ name: name, price: currentAttachmentPrice });
+    saveInterchangeablesCart();
     updateOrderDisplay();
   }
 }
@@ -2091,4 +2113,8 @@ function toggleCart() {
     cartOpen = true;
   }
 }
+</script>
+<script>
+loadInterchangeablesCart();
+updateOrderDisplay();
 </script>
