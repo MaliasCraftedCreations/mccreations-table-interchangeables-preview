@@ -1847,7 +1847,7 @@ function updateOrderDisplay() {
     : "🛒 Your Cart (tap to view)";
 
   if (itemCount === 0) {
-    list.innerHTML = '<li style="list-style:none;text-align:center;padding:10px 0;">No items yet — browse above and add something to your order.</li>';
+    list.innerHTML = '<li style="list-style:none;text-align:center;padding:10px 0;">Your cart is empty! Browse and add items below.</li>';
   }
 
   function addRow(html, removeIndex, withBorder) {
@@ -2113,9 +2113,8 @@ let cartOpen = false;
 
 function toggleCart() {
   const box = document.getElementById("orderBox");
+  const hasItems = (backers.length + attachments.length) > 0;
 
-  // ❌ If cart has items, don't allow closing
-  const hasItems = document.getElementById("orderList").children.length > 0;
   if (hasItems && cartOpen) return;
 
   if (cartOpen) {
