@@ -1840,9 +1840,9 @@ function updateOrderDisplay() {
 
   const pricing = computeOrderPricing();
 
-  function addRow(html, removeIndex) {
+  function addRow(html, removeIndex, withBorder) {
     const li = document.createElement("li");
-    li.style.cssText = "display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;";
+    li.style.cssText = "display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;padding-bottom:6px;" + (withBorder ? "border-bottom:1px dashed #a97c6b;" : "");
     li.innerHTML = `
       <span>${html}</span>
       <span onclick="removeFromOrder(${removeIndex})" style="cursor:pointer;font-weight:bold;margin-left:10px;">✕</span>
@@ -1850,9 +1850,9 @@ function updateOrderDisplay() {
     list.appendChild(li);
   }
 
-  function addPairedRow(html, removeIndex) {
+  function addPairedRow(html, removeIndex, withBorder) {
     const li = document.createElement("li");
-    li.style.cssText = "display:flex;justify-content:space-between;align-items:center;margin:2px 0 8px 18px;font-size:12px;color:#6b4a3d;list-style:none;";
+    li.style.cssText = "display:flex;justify-content:space-between;align-items:center;margin:2px 0 8px 18px;font-size:12px;color:#6b4a3d;list-style:none;padding-bottom:6px;" + (withBorder ? "border-bottom:1px dashed #a97c6b;" : "");
     li.innerHTML = `
       <span>${html}</span>
       <span onclick="removeFromOrder(${removeIndex})" style="cursor:pointer;font-weight:bold;margin-left:10px;">✕</span>
@@ -1861,22 +1861,25 @@ function updateOrderDisplay() {
   }
 
   backers.forEach((item, i) => {
-    addRow(`Backer: ${item.name} — $${pricing.backerPrices[i].toFixed(2)}`, i);
-
     const pairedIndex = pricing.pairedAttachmentIndex[i];
-    if (pairedIndex !== null) {
+    const hasPair = pairedIndex !== null;
+
+    addRow(`Backer: ${item.name} — $${pricing.backerPrices[i].toFixed(2)}`, i, !hasPair);
+
+    if (hasPair) {
       const a = attachments[pairedIndex];
       const display = pricing.attachmentDisplay[pairedIndex];
       addPairedRow(
-        `↳ Attachment: ${a.name} (included with backer — $${display.fullPrice.toFixed(2)} value)`,
-        backers.length + pairedIndex
+        `↳ Attachment: ${a.name} — Included with backer ($${display.fullPrice.toFixed(2)} value)`,
+        backers.length + pairedIndex,
+        true
       );
     }
   });
 
   attachments.forEach((item, i) => {
     if (!pricing.includedSet.has(i)) {
-      addRow(`Attachment: ${item.name} — $${item.price.toFixed(2)}`, backers.length + i);
+      addRow(`Attachment: ${item.name} — $${item.price.toFixed(2)}`, backers.length + i, false);
     }
   });
 
