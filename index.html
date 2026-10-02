@@ -1836,9 +1836,19 @@ function removeFromOrder(index) {
 function updateOrderDisplay() {
   const box = document.getElementById("orderBox");
   const list = document.getElementById("orderList");
+  const toggle = document.getElementById("cartToggle");
   list.innerHTML = "";
 
   const pricing = computeOrderPricing();
+  const itemCount = backers.length + attachments.length;
+
+  toggle.textContent = itemCount > 0
+    ? `🛒 Your Cart (${itemCount} item${itemCount === 1 ? "" : "s"}) — tap to view`
+    : "🛒 Your Cart (tap to view)";
+
+  if (itemCount === 0) {
+    list.innerHTML = '<li style="list-style:none;text-align:center;padding:10px 0;">No items yet — browse above and add something to your order.</li>';
+  }
 
   function addRow(html, removeIndex, withBorder) {
     const li = document.createElement("li");
@@ -1879,7 +1889,7 @@ function updateOrderDisplay() {
 
   attachments.forEach((item, i) => {
     if (!pricing.includedSet.has(i)) {
-      addRow(`Attachment: ${item.name} — $${item.price.toFixed(2)}`, backers.length + i, false);
+      addRow(`Attachment: ${item.name} — $${item.price.toFixed(2)}`, backers.length + i, true);
     }
   });
 
